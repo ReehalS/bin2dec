@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/bin2dec/static/css/main.5919838f.css",
+    "main.js": "/bin2dec/static/js/main.565761a4.js",
+    "index.html": "/bin2dec/index.html",
+    "main.5919838f.css.map": "/bin2dec/static/css/main.5919838f.css.map",
+    "main.565761a4.js.map": "/bin2dec/static/js/main.565761a4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5919838f.css",
+    "static/js/main.565761a4.js"
+  ]
+}
