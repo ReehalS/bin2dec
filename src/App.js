@@ -2,67 +2,67 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [binaryValue, setBinaryValue] = useState('');
-  const [decimalValue, setDecimalValue] = useState('');
-  const [isBinary, setIsBinary] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+  const [outputValue, setOutputValue] = useState('');
+  const [inputBase, setInputBase] = useState(10);
+  const [outputBase, setOutputBase] = useState(10);
 
-  const binToDec = () =>{
-    if(isBinary){
-      if(binaryValue.match(/^[0-1]+$/) === null){
-        alert('Please enter a valid binary number');
-        return;
-      }else{
-      let decimal = 0;
-      let length = binaryValue.length;
-      for (let i = 0; i < length; i++) {
-        if (binaryValue[i] === '1') {
-          decimal += Math.pow(2, length - 1 - i);
-        }
-      }
-      
-      setBinaryValue(binaryValue);
-      setDecimalValue(decimal);
+  const convert = (inputValue, inputBase, outputBase) => {
+    const parsedInputValue = parseInt(inputValue, inputBase);
+    const convertedValue = parsedInputValue.toString(outputBase);
+    
+    if (isNaN(parsedInputValue)) {
+      alert('Invalid Number');
+      return setOutputValue('Invalid Number');
     }
-  }else{
-    let binary = '';
-    let decimal = parseInt(decimalValue);
-    while(decimal > 0){
-      binary = (decimal % 2) + binary;
-      decimal = Math.floor(decimal / 2);
-    }
-    setBinaryValue(binary);
-    setDecimalValue(decimalValue);
-  }
+    
+    setOutputValue(convertedValue);
   }
 
   return (
-    <div className="App">
-      <div>
-        <h1>Binary To Decimal Converter</h1>
-        <div>
-          <textarea
-            id = "input"
-            rows = "1"
-            maxLength={16}
-            placeholder={isBinary? 'Binary Input' : 'Decimal Input'} 
-            required = "required"  
-            input = {isBinary? binaryValue: decimalValue} 
-            onChange = {(e) => {isBinary? setBinaryValue(e.target.value) : setDecimalValue(e.target.value)}}
-          />
-          <textarea
-            id = "output"
-            rows = "1"
-            placeholder= {isBinary? 'Decimal output' : 'Binary output'}
-            value = {isBinary? decimalValue : binaryValue} 
-            readOnly
-            />
+    <body>
+      <div className="baseConverter">
+        <h1>Base Converter</h1>
+        <div className='textContainer'>
+          <textarea type='text' value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder='Input Value'/>
+          <textarea type='text' value={outputValue} onChange={(e) => setOutputBase(e.target.value)} placeholder='Output Value' readOnly/>
+          
         </div>
-        <div className='buttons'>
-          <button onClick={binToDec}>Convert</button>
-          <button onClick={() => setIsBinary(!isBinary)}>Switch to {isBinary ? 'Decimal' : 'Binary'}</button>
+        <div className='baseSelectorContainer'>
+          <select value={inputBase} onChange={(e) => setInputBase(parseInt(e.target.value))}>
+            {Array.from({ length: 35 }, (_, i) => (
+              <option key={i + 2} value={i + 2}>
+                {i + 2}
+              </option>
+            ))}
+          </select>
+          <select value={outputBase} onChange={(e) => setOutputBase(parseInt(e.target.value))}>
+            {Array.from({ length: 35 }, (_, i) => (
+              <option key={i + 2} value={i + 2}>
+                {i + 2}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className='baseSelectorContainer'>
+          <select className='selector' value={inputBase} onChange={(e) => setInputBase(e.target.value)}>
+            <option value='2'>Binary</option>
+            <option value='8'>Octal</option>
+            <option value='10'>Decimal</option>
+            <option value='16'>Hexadecimal</option>
+          </select>
+          <select className='selector' value={outputBase} onChange={(e) => setOutputBase(e.target.value)}>
+            <option value='2'>Binary</option>
+            <option value='8'>Octal</option>
+            <option value='10'>Decimal</option>
+            <option value='16'>Hexadecimal</option>
+          </select>
+        </div>
+        <div className='buttonContainer'>
+          <button onClick={() => convert(inputValue, inputBase, outputBase)}>Convert</button>
         </div>
       </div>
-    </div>
+    </body>
   );
 }
 

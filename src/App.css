@@ -1,0 +1,73 @@
+body{
+    background-color: #001F3F;
+    color: #FFD717;
+}
+
+h1{
+    font-size: 2em;
+    text-align: center;
+}
+
+.textContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    
+}
+
+.baseSelectorContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+textarea{
+    padding: 10px;
+    margin: 10px;
+    color: #FFD717;
+    background-color: #083358;
+}
+
+select{
+    padding: 4px;
+    margin: 10px;
+    background-color: #FFD717;
+    color: #001F3F;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.selector{
+    margin: 10px;
+    size: 25px;
+}
+
+.textContainer p {
+    border: 1px solid rgb(29, 26, 26);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    
+}
+button{
+    padding: 4px;
+    margin: 10px;
+    background-color: #FFD717;
+    size: 25px;
+    color: #001F3F;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
